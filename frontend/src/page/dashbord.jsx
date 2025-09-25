@@ -247,22 +247,48 @@ const Dashboard = () => {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-400 text-sm py-6 mt-8">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center px-6">
-          <div className="flex flex-col gap-2">
-            <span>Quick Links</span>
-            <a href="#" className="hover:text-white">Privacy Policy</a>
-            <p onClick={() => navigate('/change-password')} className="hover:text-white">change password</p>
-          </div>
-          <div className="text-center my-4 md:my-0">
-            <span>Welcome to PiggyPal</span>
-          </div>
-          <div className="flex flex-col gap-2">
-            <span>Contact</span>
-            <a href="mailto:support@piggypal.com" className="hover:text-white">support@piggypal.com</a>
-            <a href="#" className="hover:text-white">+91 98765 43210</a>
-          </div>
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 text-center md:text-left">
+        
+        {/* Quick Links */}
+        <div className="flex flex-col gap-2 mb-6 md:mb-0">
+          <span className="text-white font-semibold">Quick Links</span>
+          <a
+            href="javascript:void(0)"
+            className="hover:text-white transition-colors duration-200"
+          >
+            Privacy Policy
+          </a>
+          <p
+            onClick={() => navigate("/change-password")}
+            className="hover:text-white cursor-pointer transition-colors duration-200"
+          >
+            Change Password
+          </p>
         </div>
-      </footer>
+
+        {/* Center Text */}
+        <div className="mb-6 md:mb-0">
+          <span className="text-white font-semibold">Welcome to PiggyPal 🐷</span>
+        </div>
+
+        {/* Contact */}
+        <div className="flex flex-col gap-2">
+          <span className="text-white font-semibold">Contact</span>
+          <a
+            href="mailto:support@piggypal.com"
+            className="hover:text-white transition-colors duration-200"
+          >
+            support@piggypal.com
+          </a>
+          <a
+            href="tel:+919876543210"
+            className="hover:text-white transition-colors duration-200"
+          >
+            +91 98765 43210
+          </a>
+        </div>
+      </div>
+    </footer>
     </div>
   );
 };

@@ -57,7 +57,7 @@ const Home = () => {
               </button>
               <button
                 onClick={() => navigate('/register')}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-3 md:px-6 py-2 rounded-lg transition-colors"
               >
                 Get Started
               </button>

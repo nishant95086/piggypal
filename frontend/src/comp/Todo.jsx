@@ -12,7 +12,7 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
     setEditingId(task._id);
     setEditForm({
       work: task.work,
-      deadline: task.deadline || "",
+      deadline: task.deadline ? task.deadline.split("T")[0] : "",
     });
   };
 
@@ -48,7 +48,7 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
       <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 flex justify-between items-center">
         <h2 className="text-lg font-semibold text-white">Your To-Do 📝</h2>
         <div className="bg-white bg-opacity-20 text-black px-3 py-1 rounded-full text-sm">
-          {data.length} items
+          {data.length} {data.length === 1 ? "item" : "items"}
         </div>
       </div>
 
@@ -74,29 +74,26 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     <input
                       type="text"
                       value={editForm.work}
-                      onChange={(e) =>
-                        setEditForm({ ...editForm, work: e.target.value })
-                      }
+                      onChange={(e) => setEditForm({ ...editForm, work: e.target.value })}
                       className="md:col-span-5 border p-2 rounded"
+                      placeholder="Task"
                     />
                     <input
                       type="date"
                       value={editForm.deadline}
-                      onChange={(e) =>
-                        setEditForm({ ...editForm, deadline: e.target.value })
-                      }
+                      onChange={(e) => setEditForm({ ...editForm, deadline: e.target.value })}
                       className="md:col-span-4 border p-2 rounded"
                     />
                     <div className="md:col-span-3 flex justify-center space-x-3">
                       <button
                         onClick={() => handleSave(task._id)}
-                        className="bg-green-600 text-white px-3 py-1 rounded"
+                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded transition"
                       >
                         Save
                       </button>
                       <button
                         onClick={handleCancel}
-                        className="bg-gray-500 text-white px-3 py-1 rounded"
+                        className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded transition"
                       >
                         Cancel
                       </button>
@@ -104,20 +101,20 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
                   </div>
                 ) : (
                   <>
-                    <div className="md:col-span-5">{task.work}</div>
-                    <div className="md:col-span-4">
+                    <div className="md:col-span-5 text-gray-800">{task.work}</div>
+                    <div className="md:col-span-4 text-gray-600">
                       {task.deadline ? new Date(task.deadline).toLocaleDateString() : "-"}
                     </div>
                     <div className="md:col-span-3 flex space-x-5">
                       <button
                         onClick={() => handleEditClick(task)}
-                        className="text-blue-600 cursor-pointer"
+                        className="text-blue-600 hover:underline"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(task._id)}
-                        className="text-red-600 cursor-pointer"
+                        className="text-red-600 hover:underline"
                       >
                         Delete
                       </button>
@@ -133,7 +130,7 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
       {/* Add Button */}
       <div className="mb-5">
         <CustomButton
-          label="Add ToDo"
+          label="Add To-Do"
           color="#10B981"
           FormComponent={AddTodo}
           onAdd={onAdd}

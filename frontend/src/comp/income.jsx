@@ -12,12 +12,11 @@ const IncomeList = ({ data = [], onDelete, onEdit, onAdd }) => {
     (sum, income) => sum + Number(income.amount || 0),
     0
   );
-  console.log(data);
 
   const handleDelete = async (id) => {
     try {
       await deleteIncome(id);
-      if (onDelete) await onDelete(id); // await here
+      if (onDelete) await onDelete(id);
     } catch (error) {
       console.error("Error deleting income:", error);
     }
@@ -27,7 +26,7 @@ const IncomeList = ({ data = [], onDelete, onEdit, onAdd }) => {
     setEditingId(income._id);
     setEditForm({
       amount: income.amount,
-      date: new Date(income.date).toISOString().split("T")[0],
+      date: income.date ? new Date(income.date).toISOString().split("T")[0] : "",
     });
   };
 
@@ -39,7 +38,7 @@ const IncomeList = ({ data = [], onDelete, onEdit, onAdd }) => {
       };
 
       const res = await updateIncome(id, payload);
-      const updatedIncome = res.data || res; // extract the updated income
+      const updatedIncome = res.data || res;
       if (onEdit) onEdit(updatedIncome);
 
       setEditingId(null);
@@ -105,9 +104,9 @@ const IncomeList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     onChange={(e) =>
                       setEditForm({ ...editForm, date: e.target.value })
                     }
-                    className="md:col-span-3  border p-2 rounded"
+                    className="md:col-span-3 border p-2 rounded"
                   />
-                  <div className="md:col-span-2 ml-50 flex justify-center space-x-3">
+                  <div className="md:col-span-2 flex justify-center space-x-3">
                     <button
                       onClick={() => handleSave(income._id)}
                       className="bg-green-600 cursor-pointer text-white px-3 py-1 rounded"
@@ -152,6 +151,7 @@ const IncomeList = ({ data = [], onDelete, onEdit, onAdd }) => {
           ))
         )}
       </div>
+
       {/* Add Button */}
       <div className="mb-5">
         <CustomButton

@@ -49,93 +49,95 @@ const WishList = ({ data = [], onDelete, onEdit, onAdd }) => {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden w-full">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6 flex justify-between items-center">
+      <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4 flex justify-between items-center flex-wrap gap-2">
         <h2 className="text-lg font-semibold text-white">Wish List 🎁</h2>
-        <div className="bg-white bg-opacity-20 text-black px-3 py-1 rounded-full text-sm">
-          {data.length} items
+        <div className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm">
+          {data.length} {data.length === 1 ? "item" : "items"}
         </div>
       </div>
 
       {/* Total */}
       {data.length > 0 && (
-        <div className="p-6 bg-gray-50 border-b border-gray-100 flex justify-between rounded-t-lg">
+        <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex justify-between items-center flex-wrap text-base">
           <span className="text-gray-700 font-medium">Total Wishes:</span>
           <span className="font-bold text-blue-600">₹{totalAmount.toLocaleString()}</span>
         </div>
       )}
 
       {/* Items */}
-      <div className="p-6 space-y-3 max-h-60 md:max-h-80 overflow-auto">
+      <div className="p-4 space-y-3 max-h-64 md:max-h-80 overflow-y-auto">
         {data.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-500">No wishes yet. Add one to get started!</p>
+          <div className="text-center py-12 text-gray-500">
+            No wishes yet. Add one to get started!
           </div>
         ) : (
           <AnimatePresence>
             {data.map((wish) => (
               <motion.div
                 key={wish._id}
-                initial={{ opacity: 0, x: -40 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 40 }}
-                transition={{ duration: 0.5 }}
-                className="bg-gray-50 hover:bg-gray-200 rounded-xl p-4 border border-gray-100 flex justify-between items-center"
+                exit={{ opacity: 0, x: 30 }}
+                transition={{ duration: 0.3 }}
+                className="bg-gray-50 hover:bg-gray-100 rounded-xl p-4 border border-gray-100"
               >
                 {editingId === wish._id ? (
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center w-full">
+                  <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3 items-center">
                     <input
                       type="text"
                       value={editForm.name}
                       onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                      className="md:col-span-3 border p-2 rounded"
+                      className="col-span-3 border p-2 rounded w-full"
                       placeholder="Name"
                     />
                     <input
                       type="number"
                       value={editForm.amount}
                       onChange={(e) => setEditForm({ ...editForm, amount: e.target.value })}
-                      className="md:col-span-2 border p-2 rounded"
+                      className="col-span-2 border p-2 rounded w-full"
                       placeholder="Amount"
                     />
                     <input
                       type="text"
                       value={editForm.link}
                       onChange={(e) => setEditForm({ ...editForm, link: e.target.value })}
-                      className="md:col-span-4 border p-2 rounded"
+                      className="col-span-4 border p-2 rounded w-full"
                       placeholder="Link"
                     />
                     <input
                       type="date"
                       value={editForm.date}
                       onChange={(e) => setEditForm({ ...editForm, date: e.target.value })}
-                      className="md:col-span-2 border p-2 rounded"
+                      className="col-span-2 border p-2 rounded w-full"
                     />
-                    <div className="md:col-span-1 flex justify-center space-x-3">
+                    <div className="col-span-1 flex justify-center space-x-2">
                       <button
                         onClick={() => handleSave(wish._id)}
-                        className="bg-green-600 text-white px-3 py-1 rounded"
+                        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm"
                       >
                         Save
                       </button>
                       <button
                         onClick={handleCancel}
-                        className="bg-gray-500 text-white px-3 py-1 rounded"
+                        className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded text-sm"
                       >
                         Cancel
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <>
-                    <div className="md:col-span-3">{wish.name}</div>
-                    <div className="md:col-span-2">₹{Number(wish.amount).toLocaleString()}</div>
-                    <div className="md:col-span-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3 items-center text-sm md:text-base">
+                    <div className="col-span-3 font-medium break-words">{wish.name}</div>
+                    <div className="col-span-2 text-blue-700">
+                      ₹{Number(wish.amount).toLocaleString()}
+                    </div>
+                    <div className="col-span-4 truncate">
                       {wish.link ? (
                         <a
                           href={wish.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-500 underline"
+                          className="text-blue-500 underline break-all"
                         >
                           View
                         </a>
@@ -143,24 +145,24 @@ const WishList = ({ data = [], onDelete, onEdit, onAdd }) => {
                         "-"
                       )}
                     </div>
-                    <div className="md:col-span-2">
+                    <div className="col-span-2 text-gray-600">
                       {wish.date ? new Date(wish.date).toLocaleDateString() : "-"}
                     </div>
-                    <div className="md:col-span-1 flex space-x-5">
+                    <div className="col-span-1 flex space-x-4 justify-start md:justify-center">
                       <button
                         onClick={() => handleEditClick(wish)}
-                        className="text-blue-600 cursor-pointer"
+                        className="text-blue-600 hover:underline"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(wish._id)}
-                        className="text-red-600 cursor-pointer"
+                        className="text-red-600 hover:underline"
                       >
                         Delete
                       </button>
                     </div>
-                  </>
+                  </div>
                 )}
               </motion.div>
             ))}
@@ -169,7 +171,7 @@ const WishList = ({ data = [], onDelete, onEdit, onAdd }) => {
       </div>
 
       {/* Add Button */}
-      <div className="mb-5 ">
+      <div className="p-4">
         <CustomButton label="Add Wish" color="#3B82F6" FormComponent={AddWish} onAdd={onAdd} />
       </div>
     </div>
