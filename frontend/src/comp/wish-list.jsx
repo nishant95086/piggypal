@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { deleteWish, updateWish } from "../api/wishApi";
 import CustomButton from "./Button";
-import AddWish from "./AddWish";
+import AddWish from "./addwish";
 
 const WishList = ({ data = [], onDelete, onEdit, onAdd }) => {
   const [editingId, setEditingId] = useState(null);
