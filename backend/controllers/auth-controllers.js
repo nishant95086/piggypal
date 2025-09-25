@@ -23,7 +23,7 @@ const register = async (req, res) => {
     await newUser.save();
     if (newUser) {
       return res.status(201).json({
-        status: true,
+        success: true,
         message: "user is created",
       });
     } else {
