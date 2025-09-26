@@ -133,7 +133,7 @@ const UdharList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex justify-center items-center flex-wrap gap-2 text-[12px] md:text-sm">
+                  <div className="flex justify-between items-center flex-wrap gap-2 text-[12px] md:text-sm">
                     <div className=" font-medium break-words">
                       {item.name}
                     </div>

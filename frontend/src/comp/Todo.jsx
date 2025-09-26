@@ -100,7 +100,7 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex justify-center items-center flex-wrap gap-3 text-[12px] md:text-sm">
+                  <div className="flex justify-between items-center flex-wrap gap-3 text-[12px] md:text-sm">
                     <div className=" text-gray-800">{task.work}</div>
                     <div className=" text-gray-600">
                       {task.deadline ? new Date(task.deadline).toLocaleDateString() : "-"}
