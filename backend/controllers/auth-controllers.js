@@ -28,7 +28,7 @@ const register = async (req, res) => {
       });
     } else {
       return res.status(400).json({
-        status: false,
+        success: false,
         message: "try again.",
       });
     }
@@ -72,7 +72,7 @@ const login = async (req, res) => {
     );
 
     res.status(201).json({
-      status: true,
+      success: true,
       message: "user is login",
       accessToken: accessToken,   // ✅ consistent key
       user: {               // ✅ include full user info
@@ -98,7 +98,7 @@ const changePassword = async (req, res) => {
     const user = await User.findById(userId);
     if (!user) {
       return res.status(400).json({
-        status: false,
+        success: true,
         message: "user not found",
       });
     }
@@ -106,7 +106,7 @@ const changePassword = async (req, res) => {
     const checkoldpassword = await bcrypt.compare(oldpassword, user.password);
     if (!checkoldpassword) {
       return res.status(400).json({
-        status: false,
+        success: true,
         message: "old password is not right",
       });
     }
@@ -117,7 +117,7 @@ const changePassword = async (req, res) => {
     user.password = hashedpassword;
     await user.save();
     res.status(201).json({
-      status: true,
+      success: true,
       message: "password change sucessfully",
     });
   } catch (e) {
