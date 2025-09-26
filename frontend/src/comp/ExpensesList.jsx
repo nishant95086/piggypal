@@ -52,7 +52,7 @@ const ExpensesList = ({ data = [], onDelete, onEdit, onAdd }) => {
   const handleCancel = () => setEditingId(null);
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    <div className="bg-white rounded-2xl w-full shadow-sm border border-gray-100 overflow-hidden">
       {/* Header */}
       <div className="bg-gradient-to-r from-pink-500 to-pink-600 p-6 flex justify-between items-center">
         <h2 className="text-md lg:text-lg font-semibold text-white">
@@ -133,15 +133,15 @@ const ExpensesList = ({ data = [], onDelete, onEdit, onAdd }) => {
                   </div>
                 </div>
               ) : (
-                <div className="flex justify-between items-center">
-                  <div className="md:col-span-3">{exp.work || "N/A"}</div>
-                  <div className="md:col-span-2">
+                <div className="flex justify-between flex-wrap gap-2 text-[12px] md:text-sm items-center">
+                  <div className="">{exp.work || "N/A"}</div>
+                  <div className="">
                     ₹{Number(exp.amount).toLocaleString()}
                   </div>
-                  <div className="md:col-span-3">
+                  <div className="">
                     {exp.date ? new Date(exp.date).toLocaleDateString() : "-"}
                   </div>
-                  <div className="md:col-span-2 flex space-x-5">
+                  <div className="flex space-x-5">
                     <button
                       onClick={() => handleEditClick(exp)}
                       className="text-blue-600 cursor-pointer"

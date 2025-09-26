@@ -100,12 +100,12 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     </div>
                   </div>
                 ) : (
-                  <>
-                    <div className="md:col-span-5 text-gray-800">{task.work}</div>
-                    <div className="md:col-span-4 text-gray-600">
+                  <div className="flex justify-center items-center flex-wrap gap-3 text-[12px] md:text-sm">
+                    <div className=" text-gray-800">{task.work}</div>
+                    <div className=" text-gray-600">
                       {task.deadline ? new Date(task.deadline).toLocaleDateString() : "-"}
                     </div>
-                    <div className="md:col-span-3 flex space-x-5">
+                    <div className=" flex space-x-5">
                       <button
                         onClick={() => handleEditClick(task)}
                         className="text-blue-600 hover:underline"
@@ -119,7 +119,7 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
                         Delete
                       </button>
                     </div>
-                  </>
+                  </div>
                 )}
               </motion.div>
             ))}

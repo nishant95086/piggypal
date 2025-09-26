@@ -126,16 +126,16 @@ const SavingList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     </div>
                   </div>
                 ) : (
-                  <>
-                    <div className="md:col-span-4 text-gray-800">
+                  <div className="flex justify-between flex-wrap gap-2 text-[12px] md:text-sm items-center">
+                    <div className=" text-gray-800">
                       ₹{Number(saving.amount).toLocaleString()}
                     </div>
-                    <div className="md:col-span-4 text-gray-600">
+                    <div className=" text-gray-600">
                       {saving.date
                         ? new Date(saving.date).toLocaleDateString()
                         : "-"}
                     </div>
-                    <div className="md:col-span-4 flex space-x-5">
+                    <div className=" flex space-x-5">
                       <button
                         onClick={() => handleEditClick(saving)}
                         className="text-blue-600 hover:underline"
@@ -149,7 +149,7 @@ const SavingList = ({ data = [], onDelete, onEdit, onAdd }) => {
                         Delete
                       </button>
                     </div>
-                  </>
+                  </div>
                 )}
               </motion.div>
             ))}

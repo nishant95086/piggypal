@@ -51,7 +51,7 @@ const WishList = ({ data = [], onDelete, onEdit, onAdd }) => {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4 flex justify-between items-center flex-wrap gap-2">
         <h2 className="text-lg font-semibold text-white">Wish List 🎁</h2>
-        <div className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm">
+        <div className="bg-white bg-opacity-20 text-black px-3 py-1 rounded-full text-sm">
           {data.length} {data.length === 1 ? "item" : "items"}
         </div>
       </div>
@@ -126,12 +126,12 @@ const WishList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     </div>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3 items-center text-sm md:text-base">
-                    <div className="col-span-3 font-medium break-words">{wish.name}</div>
-                    <div className="col-span-2 text-blue-700">
+                  <div className="flex justify-between flex-wrap gap-2 text-[12px] md:text-sm items-center">
+                    <div className=" font-medium break-words">{wish.name}</div>
+                    <div className=" text-blue-700">
                       ₹{Number(wish.amount).toLocaleString()}
                     </div>
-                    <div className="col-span-4 truncate">
+                    <div className=" truncate">
                       {wish.link ? (
                         <a
                           href={wish.link}
@@ -145,10 +145,10 @@ const WishList = ({ data = [], onDelete, onEdit, onAdd }) => {
                         "-"
                       )}
                     </div>
-                    <div className="col-span-2 text-gray-600">
+                    <div className=" text-gray-600">
                       {wish.date ? new Date(wish.date).toLocaleDateString() : "-"}
                     </div>
-                    <div className="col-span-1 flex space-x-4 justify-start md:justify-center">
+                    <div className=" flex space-x-4 justify-center">
                       <button
                         onClick={() => handleEditClick(wish)}
                         className="text-blue-600 hover:underline"

@@ -53,10 +53,10 @@ const IncomeList = ({ data = [], onDelete, onEdit, onAdd }) => {
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
       {/* Header */}
       <div className="bg-gradient-to-r from-violet-500 to-violet-600 p-6 flex justify-between items-center">
-        <h2 className="text-lg font-semibold text-white">
+        <h2 className="text-md font-semibold text-white">
           Income & Pocket Money
         </h2>
-        <div className="bg-white bg-opacity-20 text-black px-3 py-1 rounded-full text-sm">
+        <div className="bg-white bg-opacity-20 text-black px-3 py-1 rounded-full text-[13px]">
           {data.length} items
         </div>
       </div>
@@ -122,16 +122,16 @@ const IncomeList = ({ data = [], onDelete, onEdit, onAdd }) => {
                   </div>
                 </div>
               ) : (
-                <div className="flex justify-between items-center">
-                  <div className="md:col-span-2">
+                <div className="flex justify-between flex-wrap gap-2 text-[12px] md:text-sm items-center">
+                  <div className="">
                     ₹{Number(income.amount).toLocaleString()}
                   </div>
-                  <div className="md:col-span-3">
+                  <div className="">
                     {income.date
                       ? new Date(income.date).toLocaleDateString()
                       : "-"}
                   </div>
-                  <div className="md:col-span-2 flex space-x-5">
+                  <div className=" flex space-x-5">
                     <button
                       onClick={() => handleEditClick(income)}
                       className="text-blue-600 cursor-pointer"

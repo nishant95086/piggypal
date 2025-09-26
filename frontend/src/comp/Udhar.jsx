@@ -57,7 +57,7 @@ const UdharList = ({ data = [], onDelete, onEdit, onAdd }) => {
       {/* Header */}
       <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-4 flex justify-between items-center flex-wrap gap-2">
         <h2 className="text-lg font-semibold text-white">Udhar List 🤝</h2>
-        <div className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm">
+        <div className="bg-white bg-opacity-20 text-black px-3 py-1 rounded-full text-sm">
           {data.length} {data.length === 1 ? "item" : "items"}
         </div>
       </div>
@@ -133,19 +133,19 @@ const UdharList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     </div>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3 items-center text-sm md:text-base">
-                    <div className="col-span-4 font-medium break-words">
+                  <div className="flex justify-center items-center flex-wrap gap-2 text-[12px] md:text-sm">
+                    <div className=" font-medium break-words">
                       {item.name}
                     </div>
-                    <div className="col-span-3 text-orange-700">
+                    <div className=" text-orange-700">
                       ₹{Number(item.amount).toLocaleString()}
                     </div>
-                    <div className="col-span-3 text-gray-600">
+                    <div className=" text-gray-600">
                       {item.date
                         ? new Date(item.date).toLocaleDateString()
                         : "-"}
                     </div>
-                    <div className="col-span-2 flex space-x-4 justify-start md:justify-center">
+                    <div className=" flex space-x-4 justify-start md:justify-center">
                       <button
                         onClick={() => handleEditClick(item)}
                         className="text-blue-600 hover:underline"
