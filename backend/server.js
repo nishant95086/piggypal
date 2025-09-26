@@ -20,10 +20,10 @@ app.use(express.json());
 // =======================
 // CORS (restrict in prod)
 // =======================
-const allowedOrigin = process.env.CLIENT_URL || 'https://piggypal-theta.vercel.app';
-
-app.use(cors({ origin: allowedOrigin, credentials: true }));
-app.options('*', cors({ origin: allowedOrigin, credentials: true }));
+app.use(cors({
+  origin: process.env.CLIENT_URL || '*',
+  credentials: true
+}));
 
 // Database connection
 connectdb();
