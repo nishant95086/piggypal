@@ -56,7 +56,9 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
       <div className="p-6 space-y-3 max-h-60 md:max-h-80 overflow-auto">
         {data.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500">No tasks yet. Add a task to get started!</p>
+            <p className="text-gray-500">
+              No tasks yet. Add a task to get started!
+            </p>
           </div>
         ) : (
           <AnimatePresence>
@@ -74,14 +76,18 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     <input
                       type="text"
                       value={editForm.work}
-                      onChange={(e) => setEditForm({ ...editForm, work: e.target.value })}
+                      onChange={(e) =>
+                        setEditForm({ ...editForm, work: e.target.value })
+                      }
                       className="md:col-span-5 border p-2 rounded"
                       placeholder="Task"
                     />
                     <input
                       type="date"
                       value={editForm.deadline}
-                      onChange={(e) => setEditForm({ ...editForm, deadline: e.target.value })}
+                      onChange={(e) =>
+                        setEditForm({ ...editForm, deadline: e.target.value })
+                      }
                       className="md:col-span-4 border p-2 rounded"
                     />
                     <div className="md:col-span-3 flex justify-center space-x-3">
@@ -100,21 +106,23 @@ const ToDoList = ({ data = [], onDelete, onEdit, onAdd }) => {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex justify-between items-center flex-wrap gap-3 text-[12px] md:text-sm">
-                    <div className=" text-gray-800">{task.work}</div>
-                    <div className=" text-gray-600">
-                      {task.deadline ? new Date(task.deadline).toLocaleDateString() : "-"}
+                  <div className="flex justify-between flex-wrap gap-2 text-[12px] md:text-sm items-center">
+                    <div className="text-gray-800">{task.work}</div>
+                    <div className="text-gray-600">
+                      {task.deadline
+                        ? new Date(task.deadline).toLocaleDateString()
+                        : "-"}
                     </div>
-                    <div className=" flex space-x-5">
+                    <div className="flex space-x-5">
                       <button
                         onClick={() => handleEditClick(task)}
-                        className="text-blue-600 hover:underline"
+                        className="text-blue-600 cursor-pointer"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(task._id)}
-                        className="text-red-600 hover:underline"
+                        className="text-red-600 cursor-pointer"
                       >
                         Delete
                       </button>

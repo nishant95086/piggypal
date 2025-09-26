@@ -76,7 +76,9 @@ const SavingList = ({ data = [], onDelete, onEdit, onAdd }) => {
       <div className="p-6 space-y-3 max-h-60 md:max-h-80 overflow-auto">
         {data.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500">No savings yet. Start tracking your money!</p>
+            <p className="text-gray-500">
+              No savings yet. Start tracking your money!
+            </p>
           </div>
         ) : (
           <AnimatePresence>
@@ -127,24 +129,24 @@ const SavingList = ({ data = [], onDelete, onEdit, onAdd }) => {
                   </div>
                 ) : (
                   <div className="flex justify-between flex-wrap gap-2 text-[12px] md:text-sm items-center">
-                    <div className=" text-gray-800">
+                    <div className="text-gray-800">
                       ₹{Number(saving.amount).toLocaleString()}
                     </div>
-                    <div className=" text-gray-600">
+                    <div className="text-gray-600">
                       {saving.date
                         ? new Date(saving.date).toLocaleDateString()
                         : "-"}
                     </div>
-                    <div className=" flex space-x-5">
+                    <div className="flex space-x-5">
                       <button
                         onClick={() => handleEditClick(saving)}
-                        className="text-blue-600 hover:underline"
+                        className="text-blue-600 cursor-pointer"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(saving._id)}
-                        className="text-red-600 hover:underline"
+                        className="text-red-600 cursor-pointer"
                       >
                         Delete
                       </button>
